@@ -1,13 +1,10 @@
 {
-  "name": "servicedock-auth",
+  "name": "flexibase-auth",
   "version": "1.0.0",
-  "main": "app.js",
-  "repository": "https://github.com/ModularMinds/servicedock-auth.git",
+  "main": "index.js",
+  "repository": "https://github.com/ModularMinds/flexibase-auth.git",
   "author": "Tanmay Vaij <tanmayvaij22@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    
-  },
   "dependencies": {
     "express": "^4.21.0"
   },
