@@ -5,6 +5,9 @@
   "repository": "https://github.com/ModularMinds/flexibase-auth.git",
   "author": "Tanmay Vaij <tanmayvaij22@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc -p ."
+  },
   "dependencies": {
     "express": "^4.21.0"
   },
