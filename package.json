@@ -6,14 +6,15 @@
   "author": "Tanmay Vaij <tanmayvaij22@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./src/app.js",
+    "start": "node ./dist/app.js",
     "dev": "nodemon ./src/app.ts",
     "build": "tsc -p ."
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
