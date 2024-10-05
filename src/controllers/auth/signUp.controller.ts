@@ -15,14 +15,14 @@ export const signUpController = async (req: Request, res: Response) => {
 
         const token = sign({ id }, process.env.FLEXIBASE_AUTH_SECRET_KEY!);
 
-        res.json({
+        return res.json({
           message: "user created successfully",
           isSuccess: true,
           token,
-        });
+        }); 
       }
     );
   } catch (err) {
-    res.json({ err, isSuccess: false });
+    return res.json({ err, isSuccess: false });
   }
 };

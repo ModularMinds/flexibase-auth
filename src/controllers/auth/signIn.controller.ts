@@ -38,6 +38,6 @@ export const signInController = async (req: Request, res: Response) => {
       }
     );
   } catch (err) {
-    res.json({ err, isSuccess: false });
+    return res.json({ err, isSuccess: false });
   }
 };

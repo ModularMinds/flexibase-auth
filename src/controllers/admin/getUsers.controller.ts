@@ -8,6 +8,6 @@ export const getUsersController = (_: Request, res: Response) => {
       return res.json({ isSuccess: true, users: result });
     });
   } catch (err) {
-    res.json({ err, isSuccess: false });
+    return res.json({ err, isSuccess: false });
   }
 };
