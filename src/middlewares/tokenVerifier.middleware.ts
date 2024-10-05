@@ -13,15 +13,17 @@ export const tokenVerifier = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   try {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader)
-      return res.json({
+    if (!authHeader){
+      res.json({
         err: "authorization token was not provided",
         isSuccess: false,
       });
+      return
+    }
 
     const token = authHeader!.split(" ")[1];
 
@@ -32,6 +34,6 @@ export const tokenVerifier = (
 
     next();
   } catch (err) {
-    return res.json({ isSucess: false, err });
+    res.json({ isSucess: false, err });
   }
 };
