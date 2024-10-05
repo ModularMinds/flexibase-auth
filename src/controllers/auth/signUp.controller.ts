@@ -1,14 +1,28 @@
 import { Request, Response } from "express";
 import { db } from "../../config";
+import { v4 as uuidv4 } from "uuid";
+import { sign } from "jsonwebtoken";
 
-export const signUpController = (req: Request, res: Response) => {
-  console.log("/api/auth/sign-up");
+export const signUpController = async (req: Request, res: Response) => {
+  try {
+    const id = uuidv4();
 
-  const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
-  db.run(sql, [...Object.values(req.body)], (err) => {
-    if (err) return res.json({ error: err.message });
-    res.json({
-      message: "user created",
-    });
-  });
+    db.query(
+      "INSERT INTO users VALUES (?, ?, ?)",
+      [id, req.body.email, req.body.password],
+      (err) => {
+        if (err) return res.json({ err: err.message, isSuccess: false });
+
+        const token = sign({ id }, process.env.FLEXIBASE_AUTH_SECRET_KEY!);
+
+        res.json({
+          message: "user created successfully",
+          isSuccess: true,
+          token,
+        });
+      }
+    );
+  } catch (err) {
+    res.json({ err, isSuccess: false });
+  }
 };
