@@ -5,5 +5,4 @@ export const db = createConnection({
   user: "tanmay",
   password: "tanmay@user1",
   database: "flexibase",
-  
 });

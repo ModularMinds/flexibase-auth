@@ -1,14 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { JwtPayload, verify } from "jsonwebtoken";
 
-declare global {
-  namespace Express {
-    interface Request {
-      user: JwtPayload;
-    }
-  }
-}
-
 export const tokenVerifier = (
   req: Request,
   res: Response,
@@ -17,12 +9,11 @@ export const tokenVerifier = (
   try {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader){
+    if (!authHeader) {
       return res.json({
         err: "authorization token was not provided",
         isSuccess: false,
       });
-      
     }
 
     const token = authHeader!.split(" ")[1];

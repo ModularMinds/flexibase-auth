@@ -1,14 +1,8 @@
 import { Request, Response } from "express";
 import { db } from "../../config";
 import { compare } from "bcrypt";
-import { RowDataPacket } from "mysql2";
 import { sign } from "jsonwebtoken";
-
-interface User extends RowDataPacket {
-  id: string;
-  email: string;
-  password: string;
-}
+// import { User } from "../../..";
 
 export const signInController = async (req: Request, res: Response) => {
   try {

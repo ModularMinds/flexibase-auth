@@ -19,7 +19,7 @@ export const signUpController = async (req: Request, res: Response) => {
           message: "user created successfully",
           isSuccess: true,
           token,
-        }); 
+        });
       }
     );
   } catch (err) {
