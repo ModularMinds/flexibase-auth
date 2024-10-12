@@ -2,16 +2,16 @@ name: flexibase-auth-stack
 version: '3.8'
 services:
 
-  flexibase-db:
+  mysql:
     image: mysql
-    container_name: flexibase-db
+    container_name: mysql
     ports:
-      - ${FLEXIBASE_DB_EXPOSE_PORT}:3306
+      - ${DB_EXPOSE_PORT}:${DB_EXPOSE_PORT}
     environment:
       - MYSQL_ROOT_PASSWORD=${FLEXIBASE_ADMIN_PASSWORD}
-      - MYSQL_DATABASE=${FLEXIBASE_AUTH_DB}
+      - MYSQL_DATABASE=${DB_NAME}
     volumes:
-      - flexibase-db-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     restart: unless-stopped
 
   flexibase-auth:
@@ -20,17 +20,17 @@ services:
     ports:
       - ${FLEXIBASE_AUTH_EXPOSE_PORT}:5000
     environment:
-      - FLEXIBASE_EXPOSE_PORT=${FLEXIBASE_AUTH_EXPOSE_PORT}
+      - FLEXIBASE_AUTH_EXPOSE_PORT=${FLEXIBASE_AUTH_EXPOSE_PORT}
       - FLEXIBASE_AUTH_SECRET_KEY=${FLEXIBASE_AUTH_SECRET_KEY}
       - FLEXIBASE_ADMIN_USER=${FLEXIBASE_ADMIN_USER}
       - FLEXIBASE_ADMIN_PASSWORD=${FLEXIBASE_ADMIN_PASSWORD}
-      - FLEXIBASE_DB_HOST="flexibase-db"
+      - DB_HOST="mysql"
     depends_on:
-      - flexibase-db
+      - mysql
     restart: unless-stopped
       
 volumes:
-  flexibase-db-data:
+  mysql-data:
 
 networks:
   default:
