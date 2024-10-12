@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import { db } from "../../config";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
-// import { User } from "../../..";
+
+import { User } from "../../..";
 
 export const signInController = async (req: Request, res: Response) => {
   try {

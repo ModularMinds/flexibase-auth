@@ -6,10 +6,10 @@ declare global {
       user: JwtPayload;
     }
   }
+}
 
-  interface User extends RowDataPacket {
-    id: string;
-    email: string;
-    password: string;
-  }
+interface User extends RowDataPacket {
+  id: string;
+  email: string;
+  password: string;
 }
