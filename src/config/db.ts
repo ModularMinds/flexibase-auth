@@ -1,8 +1,6 @@
 import { createConnection } from "mysql2";
 
 export const db = createConnection({
-  host: "127.0.0.1",
-  user: "tanmay",
-  password: "tanmayvaij",
-  database: "flexibase",
+  host: process.env.FLEXIBASE_DB_HOST,
+  database: process.env.FLEXIBASE_AUTH_DB,
 });
