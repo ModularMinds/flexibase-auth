@@ -17,7 +17,7 @@ app.use("/api", rootRouter);
 
 db.connect((err) => {
   if (err) console.log("Error connecting to MySQL:", JSON.stringify(err, null, 1));
-  console.log("Connected to MySQL");
+  else console.log("Connected to MySQL");
 
   db.query(
     `

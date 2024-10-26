@@ -17,8 +17,10 @@ export const signInController = async (req: Request, res: Response) => {
 
         const isPasswordMatch = await compare(password, result[0]?.password);
 
-        if (!isPasswordMatch)
-          return res.json({ err: "invalid credentials", isSuccess: false });
+        if (!isPasswordMatch) {
+          res.json({ err: "invalid credentials", isSuccess: false });
+          return;
+        }
 
         const token = sign(
           { id: result[0].id },
@@ -33,6 +35,6 @@ export const signInController = async (req: Request, res: Response) => {
       }
     );
   } catch (err) {
-    return res.json({ err, isSuccess: false });
+    res.json({ err, isSuccess: false });
   }
 };

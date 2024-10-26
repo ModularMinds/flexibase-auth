@@ -5,9 +5,9 @@ export const getUsersController = (_: Request, res: Response) => {
   try {
     db.query("SELECT id, email FROM users", [], (err, result) => {
       if (err) return res.json({ err: err.message, isSuccess: false });
-      return res.json({ isSuccess: true, users: result });
+      res.json({ isSuccess: true, users: result });
     });
   } catch (err) {
-    return res.json({ err, isSuccess: false });
+    res.json({ err, isSuccess: false });
   }
 };

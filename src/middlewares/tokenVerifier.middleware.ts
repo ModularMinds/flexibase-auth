@@ -10,10 +10,11 @@ export const tokenVerifier = (
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-      return res.json({
+      res.json({
         err: "authorization token was not provided",
         isSuccess: false,
       });
+      return
     }
 
     const token = authHeader!.split(" ")[1];
@@ -25,6 +26,6 @@ export const tokenVerifier = (
 
     next();
   } catch (err) {
-    return res.json({ isSucess: false, err });
+    res.json({ isSucess: false, err });
   }
 };

@@ -19,11 +19,11 @@ export const adminAuthenticator = (
       username !== process.env.FLEXIBASE_ADMIN_USER ||
       password !== process.env.FLEXIBASE_ADMIN_PASSWORD
     ) {
-      return res.json({ isSucess: false, message: "invalid admin creds" });
+      next(JSON.stringify({ isSucess: false, message: "invalid admin creds" }));
     }
 
     next();
   } catch (err) {
-    return res.json({ isSuccess: false, err });
+    next(res.json({ isSuccess: false, err }));
   }
 };
