@@ -9,6 +9,6 @@ export const verifyUserController = (req: Request, res: Response) => {
       id,
     });
   } catch (err) {
-    res.json({ err, isSucess: false });
+    res.json({ err, isSuccess: false });
   }
 };
