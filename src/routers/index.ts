@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { authRouter } from "./auth.router";
-import { adminRouter } from "./admin.router";
+import { authRouter } from "./auth.routes";
+import { adminRouter } from "./admin.routes";
 import { adminAuthenticator } from "../middlewares";
 
 export const rootRouter = Router();
