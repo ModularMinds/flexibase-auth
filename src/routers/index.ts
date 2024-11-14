@@ -6,5 +6,5 @@ import { adminAuthenticator } from "../middlewares";
 
 export const rootRouter = Router();
 
-rootRouter.use("/admin", adminRouter);
-rootRouter.use("/auth", adminAuthenticator, authRouter);
+rootRouter.use("/admin", adminAuthenticator, adminRouter);
+rootRouter.use("/auth", authRouter);
