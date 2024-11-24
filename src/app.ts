@@ -18,6 +18,10 @@ app.use(apiCallLogger);
 
 app.use("/api", rootRouter);
 
+app.get("/api/auth/service-check", (_, res) => {
+  res.json({ isServiceAvailable: true });
+});
+
 db.connect((err) => {
   if (err)
     console.log("Error connecting to MySQL:", JSON.stringify(err, null, 1));
