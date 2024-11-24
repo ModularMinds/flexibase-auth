@@ -23,9 +23,10 @@ app.get("/api/auth/service-check", (_, res) => {
 });
 
 db.connect((err) => {
-  if (err)
+  if (err) {
     console.log("Error connecting to MySQL:", JSON.stringify(err, null, 1));
-  else console.log("Connected to MySQL");
+    process.exit(0);
+  } else console.log("Connected to MySQL");
 
   db.query(
     `
@@ -35,8 +36,10 @@ db.connect((err) => {
         password VARCHAR(100) NOT NULL
     )`,
     (err) => {
-      if (err)
+      if (err) {
         console.log("Error occurred while creating table users: ", err.message);
+        process.exit(0);
+      }
 
       app.listen(process.env.FLEXIBASE_AUTH_EXPOSE_PORT, () => {
         console.log(
