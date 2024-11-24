@@ -1,22 +1,26 @@
-import express from "express";
-import cors from "cors";
-import { config } from "dotenv";
-import { rootRouter } from "./routers";
-import { db } from "./config";
-import { apiCallLogger } from "./middlewares";
+import "./config/env";
 
-config();
+import express from "express";
+
+import cors from "cors";
+
+import { rootRouter } from "./routers";
+
+import { db } from "./config";
+
+import { apiCallLogger } from "./middlewares";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(apiCallLogger)
+app.use(apiCallLogger);
 
 app.use("/api", rootRouter);
 
 db.connect((err) => {
-  if (err) console.log("Error connecting to MySQL:", JSON.stringify(err, null, 1));
+  if (err)
+    console.log("Error connecting to MySQL:", JSON.stringify(err, null, 1));
   else console.log("Connected to MySQL");
 
   db.query(
@@ -28,10 +32,7 @@ db.connect((err) => {
     )`,
     (err) => {
       if (err)
-        console.log(
-          "Error occurred while creating table users: ",
-          err.message
-        );
+        console.log("Error occurred while creating table users: ", err.message);
 
       app.listen(process.env.FLEXIBASE_AUTH_EXPOSE_PORT, () => {
         console.log(

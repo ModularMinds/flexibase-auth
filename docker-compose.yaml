@@ -9,6 +9,8 @@ services:
       - ${DB_EXPOSE_PORT}:${DB_EXPOSE_PORT}
     environment:
       - MYSQL_ROOT_PASSWORD=${FLEXIBASE_ADMIN_PASSWORD}
+      - MYSQL_USER=${FLEXIBASE_ADMIN_USER}
+      - MYSQL_PASSWORD=${FLEXIBASE_ADMIN_PASSWORD}
       - MYSQL_DATABASE=${DB_NAME}
     volumes:
       - mysql-data:/var/lib/mysql
